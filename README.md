@@ -2,7 +2,56 @@
 
 ## React Native로 날씨앱 만들기
 
-[강의 사이트](https://academy.nomadcoders.co/courses/216885/lectures/10903204)
+---
+
+# 요약
+
+- 환경 설치
+
+```
+node -v
+npm -v
+npm install -g expo-cli
+expo install expo-linear-gradient
+expo install expo-location
+```
+
+- 기본 : Text,View컴포넌트 + 스타일시트 적용 + 상태바 숨기기, 테마 설정 +
+- JSX : PropTypes 사용하기.
+- 엑스포 기능 : expo-location 사용하기, expo-linear-gradient 사용하기, @expo/vector-icons 아이콘 기능
+- JS : Axios 날씨 API 사용.
+
+- 스타일 컴포넌트
+
+```js
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+
+
+    paddingHorizontal: 30,
+    paddingVertical: 100,
+    marginBottom: 10,
+
+    backgroundColor: "#FDF6AA"
+
+
+    color: "#2c2c2c",
+    fontWeight: "600",
+    fontSize: 24,
+    textAlign: "left"
+```
+
+- LinearGradient
+
+```js
+<LinearGradient
+  colors={weatherOptions[condition].gradient}
+  style={styles.container}
+></LinearGradient>
+```
+
+---
 
 # 0.1 Requirements
 
@@ -10,12 +59,16 @@
   VS code + expo 어플리케이션( for 모바일시뮬 )| 안드로이드 스튜디오 (for PC 시뮬레이터) + node.js + npm  
   [https://facebook.github.io/react-native/docs/getting-started](https://facebook.github.io/react-native/docs/getting-started)
 
-```
+```js
 node -v
-v12.13.0
->npm -v
-6.12.1
+npm -v
 npm install -g expo-cli
+(expo init projectName)
+```
+
+```
+expo install expo-linear-gradient
+expo install expo-location
 ```
 
 # 0.2 Expo vs RN CLI
@@ -29,26 +82,34 @@ npm install -g expo-cli
 
 - project 만들기
 
-```
+```js
 expo init AwesomeProject
 ```
 
-# 0.4 Getting to know Expo
+- +버전맞추기
 
-pass
+```
+  npm install (dependenci들을 설치한다.
+  "expo": "^35.0.0",
+  "react-native": "https://github.com/expo/react-native/archive/sdk-35.0.0.tar.gz",
+  "sdkVersion": "35.0.0"
+  버전들이 안맞으면 오류가 나오므로 버전들을 맞추거나, 기존 프로젝트의 package.json을 이용하도록!!)
+
+```
 
 # 0.5 How does React Native Work?
 
 - 리액트 네이티브는 js코드가 네이티브의 js엔진에서 돌아가서 네이티브에 접근한다.
   그 사이에는 브릿지가 있고, 처리량이 많으면 느려질 수 있다는 단점이 있다.
 
-- StyleSheet API를 통해, react native js에서 CSS을 짤 수 있다. CSS 엔진위에서 | js 이므로 background-color는 backgroundColor처럼 써야된다.
-- HTML도 react js 처럼 : div는 View 컴포넌트가 대체하고, span태그 는 Text 컴포넌트가 대체한다.
+- StyleSheet API를 통해, react native js에서 CSS을 짤 수 있다. CSS 엔진위에서 | 엄밀히 js 이므로 background-color는 backgroundColor처럼 써야된다.
+- HTML도 react js 컴포넌트가 대체하는것 처럼 : div는 View 컴포넌트가 대체하고, span태그 는 Text 컴포넌트가 대체한다.
 
 # 1.0 Layouts with Flexbox in React Native
 
-- 웹과 다른 CSS 규칙이 적용된다. CSS는 기본적으로 상속이 안됨 색상,배경색 | View = div태그 | Text = span 태그다.
+- 웹과 다른 CSS 규칙이 적용된다. | CSS는 기본적으로 상속이 안됨 색상,배경색 | View = div태그 | Text = span 태그다.
 - styles를 하나하나 적용시켜야 된다. | flex는 기본값이 row가 아닌 컬럼 | flex의 값으로 비율을 나타낼수있음.
+- string문자열은 반드시, Text컴포넌트 에만 들어가야 한다.
 
 ```js
 import React from "react";
@@ -123,6 +184,7 @@ const styles = StyleSheet.create({
 - expo 로케이션 설치하기
   [https://docs.expo.io/versions/latest/sdk/location/](https://docs.expo.io/versions/latest/sdk/location/)
   expo install expo-location
+- 클래스 컴포넌트로 대체
 
 ```js
 import React from "react";
