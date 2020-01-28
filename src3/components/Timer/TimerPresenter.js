@@ -4,21 +4,13 @@ import Button from "../Button";
 
 class Timer extends Component {
   componentWillReceiveProps(nextProps) {
-    //클래스 컴포넌트의 props가 변경되면 호출됨
     const currentProps = this.props;
-    // console.log(
-    //   `현재Props : ${currentProps.isPlaying} 다음Props : ${nextProps.isPlaying}`
-    // );
     if (!currentProps.isPlaying && nextProps.isPlaying) {
-      //setInterval
-      //console.log("should start");
       const timerInterval = setInterval(() => {
         currentProps.addSecond();
       }, 1000);
       this.setState({ timerInterval });
     } else if (currentProps.isPlaying && !nextProps.isPlaying) {
-      //clearInterval
-      //console.log("should end");
       clearInterval(this.state.timerInterval);
     }
   }

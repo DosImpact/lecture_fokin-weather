@@ -48,9 +48,20 @@ function addSecond() {
     type: ADD_SECOND
   };
 }
+const actionCreators = {
+  startTimer,
+  pauseTimer,
+  restartTimer,
+  addSecond
+};
+export { actionCreators };
 
 // Reducer - 변수state,action을 받는다.
 
+//---------------------------------------------------------------------------------------------------------------------------
+/**
+ *
+ */
 const TIMER_DURATION = 3;
 
 const initialState = {
@@ -59,7 +70,7 @@ const initialState = {
   timerDuration: TIMER_DURATION
 };
 
-function reducer(state = initialState, action) {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
     case START_TIMER:
       return applyStartTimer(state, action);
@@ -130,17 +141,3 @@ function applyAddSecond(state, action) {
     };
   }
 }
-
-// Exports
-
-const actionCreators = {
-  startTimer,
-  pauseTimer,
-  restartTimer,
-  addSecond
-};
-export { actionCreators };
-
-// Default
-
-export default reducer;
