@@ -1,9 +1,9 @@
 import React from "react";
-import { StyleSheet, Text, View, StatusBar } from "react-native";
+import { StyleSheet, View } from "react-native";
 import Timer from "./components/Timer";
 import reducer from "./reducer";
 import { createStore } from "redux";
-import { Provider } from "react-redux";
+import { Provider } from "react-redux"; //provider는 store를 자식 컴포넌트들에게 넣어준다.
 
 let store = createStore(reducer);
 //console.log(store); // dispatch,getState,replaceReducer,subscribe
